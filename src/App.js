@@ -8,6 +8,7 @@ function App() {
   const [receivedData, setReceivedData] = useState([]);
   const [socket, setSocket] = useState(null);
   const [connectedClients, setConnectedClients] = useState([]);
+  const [ socketId, setSocketId ] = useState("");
 
   const handleDraw = (data) => {
     if (socket) {
@@ -25,6 +26,9 @@ function App() {
     //This is a must, starting the socket connection out of a useEffect will create multiple connection
     const newSocket = io("http://localhost:8080");
     setSocket(newSocket);
+    newSocket.on("connect", () => {
+      setSocketId(newSocket.id);
+    });
     newSocket.connect();
     //New client gets all the data on the canvas
     newSocket.on("drawingData", (data) => {
@@ -64,7 +68,12 @@ function App() {
       <main className="main_content">
         <div>
           <h1>Pixel Art Collaboration</h1>
+          <p>
+          your are: {socketId.split("", 3)}
+
+            </p>
           <div className="canvas_container">
+           
             <Canvas
               onDraw={handleDraw}
               receivedData={receivedData}
