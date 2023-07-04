@@ -1,0 +1,30 @@
+.app {
+  margin: 1rem;
+}
+
+.main_content {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: auto 0;
+  justify-content: center;
+  
+}
+
+.canvas_container {
+  border: 1px solid #bbb;
+  display: inline-flex;
+  position: relative;
+}
+
+.delete_me_message {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  bottom: 0;
+  right: 0;
+}
+
+.connected_users {
+  min-width: 200px;
+}
